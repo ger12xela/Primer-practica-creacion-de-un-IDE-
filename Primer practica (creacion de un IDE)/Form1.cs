@@ -16,5 +16,15 @@ namespace Primer_practica__creacion_de_un_IDE_
         {
             InitializeComponent();
         }
+
+        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
