@@ -15,19 +15,13 @@ namespace Primer_practica__creacion_de_un_IDE_.backend
         {
         }
 
-        public void ingresar(String lista)
+        public int ingresar(String lista)
         {
-            this.lista = lista.ToCharArray();
-            Console.WriteLine(this.lista);
-            Form1 Principal = new Form1();
-            Principal.richTextBox1.Text = "hola2";
-            Principal.Update();
+            TiposDatosPrimitivos datoPrimitivo = new TiposDatosPrimitivos(lista);
+            
+            int tipo = datoPrimitivo.Tipo;
+            return tipo;
         }
 
-        public string regresar()
-        {
-            String regreso = new String(lista);
-            return regreso;
-        }
     }
 }

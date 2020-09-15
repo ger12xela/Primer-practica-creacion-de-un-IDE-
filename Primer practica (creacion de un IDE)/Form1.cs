@@ -90,50 +90,45 @@ namespace Primer_practica__creacion_de_un_IDE_
         {
             Peso1(richTextBox1.Text);
 
+
         }
+        PruebaAutomataBasico code = new PruebaAutomataBasico();
 
-        public String Peso1(String cadena)
+        public void Peso1(String cadena)
         {
-            String palabra = "";
-            String retorno = " ";
-            char espacio = ' ';
-            int numero = 0;
-            for (int i = 0; i < cadena.Length; i++)
+            if (cadena.Equals("")) code.comprobarlexema(' ');
+            if (cadena.Length > 0)
             {
-            
-                if (cadena[i].Equals(espacio))
-                {
-
-                Console.WriteLine(cadena);
-                    numero = i-palabra.Length;
-                    Paso2(palabra, numero);
-                    palabra = "";
-                }
-                else
-                {
-                    palabra += cadena[i].ToString();
-                    numero++;
-                }
+                String palabra= code.comprobarlexema(cadena[cadena.Length - 1]);
+                int numero = palabra.Length;
+                Paso2(palabra, numero);
             }
-            retorno = palabra;
-            palabra = "";
-            return retorno;
+
+ 
         }
         public void Paso2(String palabra, int numero)
         {
-            Console.WriteLine("aqui");
-            if (palabra.Equals("hola"))
+
+            int tipo = code.tipo;
+            Console.WriteLine(tipo +" "+ palabra);
+            if (tipo == 1) 
             {
-                richTextBox1.Select(numero, richTextBox1.Text.Length);
-                richTextBox1.SelectionColor = Color.Orange;
+                richTextBox1.Select(richTextBox1.Text.Length - palabra.Length, richTextBox1.Text.Length);
+                richTextBox1.SelectionColor = Color.Violet;
                 richTextBox1.SelectionStart = richTextBox1.Text.Length;
                 richTextBox1.SelectionColor = Color.Black;
-
-
             }
+            if (tipo == 2)
+            {
+                richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
+                richTextBox1.SelectionColor = Color.Green;
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.SelectionColor = Color.Black;
+            }
+
             else
             {
-                richTextBox1.Select(numero, richTextBox1.Text.Length);
+                richTextBox1.Select(richTextBox1.Text.Length, richTextBox1.Text.Length);
                 richTextBox1.SelectionColor = Color.Blue;
                 richTextBox1.SelectionStart = richTextBox1.Text.Length;
                 //richTextBox1.Select(richTextBox1.Text.Length - 1, richTextBox1.Text.Length);
