@@ -49,6 +49,7 @@
     <Compile Include="backend\DirectorioAutomatas.cs" />
     <Compile Include="backend\Estado.cs" />
     <Compile Include="backend\EstadoComplejo.cs" />
+    <Compile Include="backend\EstadoComplejodoble.cs" />
     <Compile Include="backend\PruebaAutomataBasico.cs" />
     <Compile Include="backend\TiposDatosPrimitivos.cs" />
     <Compile Include="Form1.cs">

@@ -20,6 +20,7 @@ namespace Primer_practica__creacion_de_un_IDE_
         public Form1()
         {
             InitializeComponent();
+
         }
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -85,9 +86,21 @@ namespace Primer_practica__creacion_de_un_IDE_
                 MessageBox.Show("La hoja esta vacia", "Informacion"); 
             }
         }
+        int cadenaAnterior= 0 ;
+        int cadenalargo= 0;
 
         protected void richTextBox1_TextChanged(object sender, EventArgs e)
         {
+            cadenaAnterior = cadenalargo;
+            cadenalargo = richTextBox1.Text.Length;
+            if (cadenaAnterior>cadenalargo)
+            {
+                if (richTextBox1.Text.Length >= 1)
+                {
+                code.borrarcaracterfinal(richTextBox1.Text[richTextBox1.Text.Length-1]);
+
+                }
+            }
             Peso1(richTextBox1.Text);
 
 
@@ -96,7 +109,11 @@ namespace Primer_practica__creacion_de_un_IDE_
 
         public void Peso1(String cadena)
         {
-            if (cadena.Equals("")) code.comprobarlexema(' ');
+            if (cadena.Equals(""))
+            {
+                Console.WriteLine("estado cero");
+                code.inicialCero();
+            }
             if (cadena.Length > 0)
             {
                 String palabra= code.comprobarlexema(cadena[cadena.Length - 1]);
@@ -110,7 +127,7 @@ namespace Primer_practica__creacion_de_un_IDE_
         {
 
             int tipo = code.tipo;
-            Console.WriteLine(tipo +" "+ palabra);
+            Console.WriteLine(tipo +"-------- "+ palabra);
             if (tipo == 1) 
             {
                 richTextBox1.Select(richTextBox1.Text.Length - palabra.Length, richTextBox1.Text.Length);
@@ -121,7 +138,35 @@ namespace Primer_practica__creacion_de_un_IDE_
             if (tipo == 2)
             {
                 richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
-                richTextBox1.SelectionColor = Color.Green;
+                richTextBox1.SelectionColor = Color.Gray;
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.SelectionColor = Color.Black;
+            }
+            if (tipo == 3)
+            {
+                richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
+                richTextBox1.SelectionColor = Color.Cyan;
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.SelectionColor = Color.Black;
+            }
+            if (tipo == 4)
+            {
+                richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
+                richTextBox1.SelectionColor = Color.Brown;
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.SelectionColor = Color.Black;
+            }
+            if (tipo == 5)
+            {
+                richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
+                richTextBox1.SelectionColor = Color.DarkBlue;
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.SelectionColor = Color.Black;
+            }
+            if (tipo == 6)
+            {
+                richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
+                richTextBox1.SelectionColor = Color.HotPink;
                 richTextBox1.SelectionStart = richTextBox1.Text.Length;
                 richTextBox1.SelectionColor = Color.Black;
             }
