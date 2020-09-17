@@ -33,11 +33,13 @@ namespace Primer_practica__creacion_de_un_IDE_
                 archivo = abrirArchivo.FileName;
                 using (StreamReader leer = new StreamReader(archivo)) {
 
-                    richTextBox1.Text = leer.ReadToEnd();
-                    
+                    richTextBox1.Clear();
+                    //richTextBox1.Text = leer.ReadToEnd();
+                    String escrito = leer.ReadToEnd();
+                    PasoAbrir(escrito);
+
                 }
             }
-
             
         }
 
@@ -123,66 +125,90 @@ namespace Primer_practica__creacion_de_un_IDE_
 
  
         }
+
+        String[] palabrasReservadas = { "entero","decimal","cadena","booleano","caracter",
+            "SI","SINO","SINO_SI","MIESTRAS",
+            "HACER","DESDE","HASTA","INCREMENTO"};
+
+        
         public void Paso2(String palabra, int numero)
         {
 
             int tipo = code.tipo;
-            Console.WriteLine(tipo +"-------- "+ palabra);
-            if (tipo == 1) 
+            Console.WriteLine(tipo + "-------- " + palabra);
+            Console.WriteLine(richTextBox1.Text.Length + "--------------- " + palabra.Length);
+
+            if (tipo == 1)
             {
                 richTextBox1.Select(richTextBox1.Text.Length - palabra.Length, richTextBox1.Text.Length);
                 richTextBox1.SelectionColor = Color.Violet;
-                richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                richTextBox1.SelectionColor = Color.Black;
+
             }
             if (tipo == 2)
             {
                 richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
                 richTextBox1.SelectionColor = Color.Gray;
-                richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                richTextBox1.SelectionColor = Color.Black;
+
             }
             if (tipo == 3)
             {
                 richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
                 richTextBox1.SelectionColor = Color.Cyan;
-                richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                richTextBox1.SelectionColor = Color.Black;
+
             }
             if (tipo == 4)
             {
                 richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
                 richTextBox1.SelectionColor = Color.Brown;
-                richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                richTextBox1.SelectionColor = Color.Black;
+
             }
-            if (tipo == 5)
+            if (tipo == 5 && palabra.Length <= 2)
             {
                 richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
                 richTextBox1.SelectionColor = Color.DarkBlue;
-                richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                richTextBox1.SelectionColor = Color.Black;
+
             }
             if (tipo == 6)
             {
                 richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
                 richTextBox1.SelectionColor = Color.HotPink;
-                richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                richTextBox1.SelectionColor = Color.Black;
+
+            }
+            if (tipo == 7 && palabrasReservadas.Contains(palabra.TrimStart()))
+            {
+                richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
+                richTextBox1.SelectionColor = Color.Green;
+            }
+            if (tipo == 8)
+            {
+                richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
+                richTextBox1.SelectionColor = Color.Red;
             }
 
-            else
+            if(tipo == 0)
             {
-                richTextBox1.Select(richTextBox1.Text.Length, richTextBox1.Text.Length);
-                richTextBox1.SelectionColor = Color.Blue;
-                richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                //richTextBox1.Select(richTextBox1.Text.Length - 1, richTextBox1.Text.Length);
+                richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
                 richTextBox1.SelectionColor = Color.Black;
             }
 
             richTextBox1.SelectionStart = richTextBox1.Text.Length;
 
 
+        }
+        public void PasoAbrir(String escrito)
+
+        {
+            for (int i = 0; i < escrito.Length; i++)
+            {
+                richTextBox1.SelectedText = escrito[i].ToString(); 
+            }
+        }
+
+        private void pegadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String pegado = richTextBox1.Text;
+            richTextBox1.Clear();
+            PasoAbrir(pegado);
         }
     }
         

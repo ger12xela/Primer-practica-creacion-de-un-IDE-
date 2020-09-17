@@ -16,7 +16,7 @@ namespace Primer_practica__creacion_de_un_IDE_.backend
         public int tipo { get; set; }
         String palabraRetorno = "";
         int estadoActual = 0;
-        int[] haceptacion = { 1, 2, 6, 5, 4, 7 , 8, 9};
+        int[] haceptacion = { 1, 2, 6, 5, 4, 8, 9, 11, 12, 13,14,15,16,17,18};
 
         Estado[] sito =
         {
@@ -28,11 +28,25 @@ namespace Primer_practica__creacion_de_un_IDE_.backend
             (new Estado(0, '!', 8)),
             (new Estado(0, '<', 8)),
             (new Estado(0, '>', 8)),
-            (new Estado(0, '/', 8)),
             (new Estado(0, '=', 9)),
             (new Estado(0, ';', 9)),
-            (new EstadoComplejodoble(0,7,65,90,97,122)),// rango para caracteres tipo letra
-            (new EstadoComplejodoble(7,7,65,90,97,122)),
+            (new Estado(9, '=', 8)),
+            (new Estado(0, ' ', 7)),
+            (new Estado(10, ' ', 11)),
+            (new Estado(0, '/', 13)),
+            (new Estado(13, '/', 14)),
+            (new Estado(13, '*', 15)),
+            (new Estado(16, '*', 17)),
+            (new Estado(17, '/', 18)),
+            (new Estado(15, '*', 17)),
+            (new EstadoComplejodoble(15,16,0,41,43,255)),//exepto asterisco (*)
+            (new EstadoComplejodoble(16,16,0,41,43,255)),//exepto asterisco (*)
+            (new EstadoComplejodoble(17,16,0,47,49,255)),//exepto asterisco (*)
+            (new EstadoComplejodoble(14,14,0,12,14,255)),
+            (new EstadoComplejodoble(7,10,65,90,97,122)),// rango para caracteres tipo letra
+            (new EstadoComplejodoble(0,10,65,90,97,122)),// rango para caracteres tipo letra
+            (new EstadoComplejodoble(10,12,65,90,97,122)),
+            (new EstadoComplejodoble(12,12,65,90,97,122)),
             (new EstadoComplejo(1, 2, 48, 57)),
             (new EstadoComplejo(2, 2, 48, 57)), // termina entero haceptados 
             (new Estado(2, '.', 3)),
@@ -64,37 +78,7 @@ namespace Primer_practica__creacion_de_un_IDE_.backend
                         i = sito.Length; 
                         if (haceptacion.Contains(estadoActual))
                         {
-                            Console.WriteLine("-------------haceptado haci mero ");
-                            switch (estadoActual)
-                            {
-                                case 2:
-                                    tipo = 1;
-                                    break;
-                                case 6 :
-                                    tipo = 2;
-                                    break;
-                                case 5:
-                                    tipo = 2;
-                                    break;
-                                case 4:
-                                    tipo = 3;
-                                    break;
-                                case 7:
-                                    tipo = 4;
-                                    break;
-                                case 1:
-                                    tipo = 5;
-                                    break;
-                                case 8:
-                                    tipo = 5;
-                                    break;
-                                case 9:
-                                    tipo = 6;
-                                    break;
-                                default:
-                                    Console.WriteLine("Default case");
-                                    break;
-                            }
+                            estadoColor(estadoActual);
                         }
 
                     }
@@ -121,8 +105,7 @@ namespace Primer_practica__creacion_de_un_IDE_.backend
             if (palabraRetorno.Length > 0)
             {
                 Console.WriteLine(palabraRetorno + " palabra a borrar");
-
-
+                if (estadoActual == 14) estadoActual = 0;
                 palabraRetorno = "";
                 Console.WriteLine(palabraRetorno + " palabra eliminada con exiot");
             }
@@ -132,6 +115,28 @@ namespace Primer_practica__creacion_de_un_IDE_.backend
             estadoActual = 0;
             palabraRetorno = "";
             this.tipo = 0;
+        }
+
+
+        int[] matrizVioleta = { 2 };
+        int[] matrizGris = { 6,5 };
+        int[] matrizceleste = { 4 };
+        int[] matrizCafe = { 11 };
+        int[] matrizAzuloscuro = { 1, 8,13 };
+        int[] matrizRosa = { 9};
+        int[] matrizVerde = { 12 };
+        int[] matrizRoja = { 14, 15, 16, 17, 18 };
+
+        public void estadoColor(int estado)
+        {
+            if (matrizVioleta.Contains(estado)) tipo = 1;
+            if (matrizGris.Contains(estado)) tipo = 2;
+            if (matrizceleste.Contains(estado)) tipo = 3;
+            if (matrizCafe.Contains(estado)) tipo = 4;
+            if (matrizAzuloscuro.Contains(estado)) tipo = 5;
+            if (matrizRosa.Contains(estado)) tipo = 6;
+            if (matrizVerde.Contains(estado)) tipo = 7;
+            if (matrizRoja.Contains(estado)) tipo = 8;
         }
     }
 }

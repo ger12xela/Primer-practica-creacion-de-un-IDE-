@@ -38,6 +38,7 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pegadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +87,8 @@
             // 
             // editarToolStripMenuItem
             // 
+            this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pegadoToolStripMenuItem});
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
             this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.editarToolStripMenuItem.Text = "Editar";
@@ -137,6 +140,13 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Errores";
             // 
+            // pegadoToolStripMenuItem
+            // 
+            this.pegadoToolStripMenuItem.Name = "pegadoToolStripMenuItem";
+            this.pegadoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pegadoToolStripMenuItem.Text = "Pegado";
+            this.pegadoToolStripMenuItem.Click += new System.EventHandler(this.pegadoToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,6 +178,7 @@
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem pegadoToolStripMenuItem;
     }
 }
 
