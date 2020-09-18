@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuitemarchivo = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbrir = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pegadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pegadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -93,6 +94,13 @@
             this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.editarToolStripMenuItem.Text = "Editar";
             // 
+            // pegadoToolStripMenuItem
+            // 
+            this.pegadoToolStripMenuItem.Name = "pegadoToolStripMenuItem";
+            this.pegadoToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.pegadoToolStripMenuItem.Text = "Pegado";
+            this.pegadoToolStripMenuItem.Click += new System.EventHandler(this.pegadoToolStripMenuItem_Click);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
@@ -119,6 +127,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(794, 298);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            this.richTextBox1.CursorChanged += new System.EventHandler(this.richTextBox1_CursorChanged);
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // richTextBox2
@@ -140,13 +149,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Errores";
             // 
-            // pegadoToolStripMenuItem
-            // 
-            this.pegadoToolStripMenuItem.Name = "pegadoToolStripMenuItem";
-            this.pegadoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.pegadoToolStripMenuItem.Text = "Pegado";
-            this.pegadoToolStripMenuItem.Click += new System.EventHandler(this.pegadoToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -154,9 +156,10 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Editor (Proyecto 1) Lenguajes Formales y de programacion";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -17,6 +17,12 @@ namespace Primer_practica__creacion_de_un_IDE_
     public partial class Form1 : Form
     {
         String archivo;
+        private int cadenaAnterior= 0 ;
+        private int cadenalargo= 0;
+        private DetectarLexema code = new DetectarLexema();
+        private String[] palabrasReservadas = { "entero","decimal","cadena","booleano","caracter",
+            "SI","SINO","SINO_SI","MIESTRAS",
+            "HACER","DESDE","HASTA","INCREMENTO"};
         public Form1()
         {
             InitializeComponent();
@@ -41,10 +47,6 @@ namespace Primer_practica__creacion_de_un_IDE_
                 }
             }
             
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
         }
 
         private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -88,8 +90,6 @@ namespace Primer_practica__creacion_de_un_IDE_
                 MessageBox.Show("La hoja esta vacia", "Informacion"); 
             }
         }
-        int cadenaAnterior= 0 ;
-        int cadenalargo= 0;
 
         protected void richTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -104,16 +104,20 @@ namespace Primer_practica__creacion_de_un_IDE_
                 }
             }
             Peso1(richTextBox1.Text);
+            int Posicion = richTextBox1.SelectionStart;
+
+            int linea = richTextBox1.GetLineFromCharIndex(Posicion);
+
+            int columna = Posicion -richTextBox1.GetFirstCharIndexOfCurrentLine();
+            label1.Text = "linea " + linea + ", columna" + columna;
 
 
         }
-        PruebaAutomataBasico code = new PruebaAutomataBasico();
 
         public void Peso1(String cadena)
         {
             if (cadena.Equals(""))
             {
-                Console.WriteLine("estado cero");
                 code.inicialCero();
             }
             if (cadena.Length > 0)
@@ -126,17 +130,12 @@ namespace Primer_practica__creacion_de_un_IDE_
  
         }
 
-        String[] palabrasReservadas = { "entero","decimal","cadena","booleano","caracter",
-            "SI","SINO","SINO_SI","MIESTRAS",
-            "HACER","DESDE","HASTA","INCREMENTO"};
 
         
         public void Paso2(String palabra, int numero)
         {
 
             int tipo = code.tipo;
-            Console.WriteLine(tipo + "-------- " + palabra);
-            Console.WriteLine(richTextBox1.Text.Length + "--------------- " + palabra.Length);
 
             if (tipo == 1)
             {
@@ -190,6 +189,12 @@ namespace Primer_practica__creacion_de_un_IDE_
                 richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
                 richTextBox1.SelectionColor = Color.Black;
             }
+            String[] booleano = { "verdadero", "falso" };
+            if (tipo == 7 && booleano.Contains(palabra.TrimStart()))
+            {
+                richTextBox1.Select(richTextBox1.Text.Length - numero, richTextBox1.Text.Length);
+                richTextBox1.SelectionColor = Color.Orange;
+            }
 
             richTextBox1.SelectionStart = richTextBox1.Text.Length;
 
@@ -209,6 +214,16 @@ namespace Primer_practica__creacion_de_un_IDE_
             String pegado = richTextBox1.Text;
             richTextBox1.Clear();
             PasoAbrir(pegado);
+        }
+
+        private void richTextBox1_CursorChanged(object sender, EventArgs e)
+        {
+            int Posicion = richTextBox1.SelectionStart;
+
+            int linea = richTextBox1.GetLineFromCharIndex(Posicion);
+
+            int columna = richTextBox1.GetFirstCharIndexOfCurrentLine();
+            label1.Text = "linea " + linea + ", columna" + columna;
         }
     }
         
