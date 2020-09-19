@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Primer_practica__creacion_de_un_IDE_.backend
 {
+    /// <summary>
+    /// clase que se encarga de encontrar el tipo de lexema
+    /// </summary>
     class DetectarLexema
     {
         public DetectarLexema()
@@ -19,6 +22,7 @@ namespace Primer_practica__creacion_de_un_IDE_.backend
         private String palabraRetorno = "";
         private int[] haceptacion = { 1, 2, 6, 5, 4, 8, 9, 11, 12, 13,14,15,16,17,18};
 
+        // los estados para funcionar
         Estado[] sito =
         {
             (new EstadoComplejo(0, 2, 48, 57)),
@@ -58,6 +62,11 @@ namespace Primer_practica__creacion_de_un_IDE_.backend
             (new EstadoComplejo(4, 4, 48, 57)),
          };
 
+        /// <summary>
+        /// metodo principal para encontrar el tipo de lexema 
+        /// </summary>
+        /// <param name="letra"></param>
+        /// <returns></returns>
         public String comprobarlexema(char letra)
         {
             tipo = 0;
@@ -98,6 +107,10 @@ namespace Primer_practica__creacion_de_un_IDE_.backend
             return palabraRetorno;
         }
         
+        /// <summary>
+        /// si se borra algun caracter este metodo funcionara
+        /// </summary>
+        /// <param name="borrar"></param>
         public void borrarcaracterfinal(char borrar)
         {
             if (palabraRetorno.Length > 0)
@@ -106,6 +119,10 @@ namespace Primer_practica__creacion_de_un_IDE_.backend
                 palabraRetorno = "";
             }
         }
+
+        /// <summary>
+        ///  comenzar de nuevo la detecxion de lexeman
+        /// </summary>
         public void inicialCero()
         {
             estadoActual = 0;
@@ -123,6 +140,10 @@ namespace Primer_practica__creacion_de_un_IDE_.backend
         int[] matrizVerde = { 12 };
         int[] matrizRoja = { 14, 15, 16, 17, 18 };
 
+        /// <summary>
+        /// asigna un nuero dependiendo el tipo de lexema para saber que color debe aplicar la clase principal
+        /// </summary>
+        /// <param name="estado"></param>
         public void estadoColor(int estado)
         {
             if (matrizVioleta.Contains(estado)) tipo = 1;
